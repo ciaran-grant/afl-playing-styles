@@ -9,6 +9,13 @@ def plot_pitch():
     
     return fig, ax, pitch
 
+def plot_pitch_ax(ax):
+    
+    pitch = Pitch(pitch_length=160, pitch_width=135)
+    pitch.draw(ax=ax)
+    
+    return pitch, ax
+    
 def plot_half_pitch(pad_bottom = -20):
     
     pitch = Pitch(pitch_length=160, pitch_width=135,
@@ -18,6 +25,15 @@ def plot_half_pitch(pad_bottom = -20):
     
     return fig, ax, pitch
 
+def plot_half_pitch_ax(ax, pad_bottom = -20):
+    
+    pitch = Pitch(pitch_length=160, pitch_width=135,
+                half=True, pad_bottom=pad_bottom)
+
+    pitch.draw(ax=ax) 
+    
+    return pitch, ax   
+
 def plot_vertical_pitch():
     
     pitch = VerticalPitch(pitch_length=160, pitch_width=135)
@@ -25,6 +41,14 @@ def plot_vertical_pitch():
     fig, ax = pitch.draw()
     
     return fig, ax, pitch
+
+def plot_vertical_pitch_ax(ax):
+    
+    pitch = VerticalPitch(pitch_length=160, pitch_width=135)
+
+    pitch.draw(ax=ax)    
+    
+    return pitch, ax
 
 def plot_half_vertical_pitch(pad_bottom = -20):
     
@@ -34,6 +58,14 @@ def plot_half_vertical_pitch(pad_bottom = -20):
     fig, ax = pitch.draw()
     
     return fig, ax, pitch
+
+def plot_half_vertical_pitch_ax(ax, pad_bottom = -20):
+    
+    pitch = VerticalPitch(pitch_length=160, pitch_width=135,
+                          half=True, pad_bottom=pad_bottom)
+    pitch.draw(ax=ax)
+    
+    return pitch, ax
 
 def get_pitch(vertical=False, half=False, pad_bottom = -20):
     
