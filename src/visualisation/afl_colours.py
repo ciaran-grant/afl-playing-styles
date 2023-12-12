@@ -1,5 +1,11 @@
 import matplotlib.pyplot as plt
 
+def get_team_colours(team):
+    
+    primary_colour, secondary_colour = team_colours[team]['positive'], team_colours[team]['negative']
+    
+    return primary_colour, secondary_colour
+
 team_colours = {
     'Adelaide':{
         'positive':'#002b5c',

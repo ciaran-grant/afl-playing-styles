@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from visualisation.afl_colours import team_colourmaps
 from chain_utils import get_match, get_team
 from visualisation.plotting_pitches import plot_half_vertical_pitch_ax
+from visualisation.plotting_utils import add_ax_text
 
 def create_set_shot_indicator(chain_data):
     
@@ -100,5 +101,7 @@ def plot_vertical_pitch_team_expected_score(ax, chain_data, match_id, team):
     shot_data_dict = get_shot_data_dict(chain_data, match_id, team)
     pitch, ax = plot_half_vertical_pitch_ax(ax)
     pitch, ax = plot_expected_score_map(pitch, ax, shot_data_dict, cmap = team_colourmaps[team], size_ratio = 3)
+    
+    ax = add_ax_text(ax, 'Expected Score Shot Map', team=team)
     
     return ax

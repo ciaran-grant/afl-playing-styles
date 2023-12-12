@@ -3,6 +3,7 @@ from chain_utils import get_match, get_team
 import seaborn as sns
 from clustering.clustering import GMM
 from visualisation.plotting_pitches import plot_vertical_pitch_ax
+from visualisation.plotting_utils import add_ax_text
 
 def get_possession_start_end(chains):
     
@@ -64,5 +65,6 @@ def plot_vertical_pitch_team_possessions(ax, chain_data, match_id, team, cluster
     pitch, ax = plot_possession_clusters_pitch_ax(pitch, ax, data=possessions, 
                                               colour_cycle=sns.color_palette("pastel", clusters),
                                               label='GMM_'+str(clusters), top_n=top_n)
-    
+    ax = add_ax_text(ax, 'Most Common Possessions', team=team)
+
     return ax

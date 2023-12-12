@@ -3,6 +3,7 @@ from chain_utils import get_match, get_team
 import seaborn as sns
 from clustering.clustering import GMM
 from visualisation.plotting_pitches import plot_half_vertical_pitch_ax
+from visualisation.plotting_utils import add_ax_text
 
 def get_inside50s(chains):
     
@@ -42,5 +43,5 @@ def plot_vertical_pitch_team_inside50s(ax, chain_data, match_id, team, clusters=
                                             end_xy = ('left_right_end_x', 'left_right_end_y'),
                                             colour_cycle=sns.color_palette("pastel", clusters),
                                             label='GMM_'+str(clusters), top_n=top_n)
-    
+    ax = add_ax_text(ax, 'Most Common Inside50s', team=team)
     return ax

@@ -42,9 +42,9 @@ def plot_vertical_pitch():
     
     return fig, ax, pitch
 
-def plot_vertical_pitch_ax(ax, line_colour="black", line_zorder=2, line_width=1, line_alpha=1):
+def plot_vertical_pitch_ax(ax, line_zorder=2, line_width=1, line_alpha=1):
     
-    pitch = VerticalPitch(pitch_length=160, pitch_width=135, line_colour=line_colour, line_zorder=line_zorder, line_width=line_width, line_alpha=line_alpha)
+    pitch = VerticalPitch(pitch_length=160, pitch_width=135, line_zorder=line_zorder, line_width=line_width, line_alpha=line_alpha)
 
     pitch.draw(ax=ax)    
     
