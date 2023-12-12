@@ -1,4 +1,5 @@
 from chain_utils import get_match, get_scores, get_teams
+from visualisation.afl_colours import get_team_colours
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -77,7 +78,6 @@ def create_match_stats(summary, player_stats, match_id):
     match_score_summary = create_match_score_summary(match_summary)
     match_stats = create_match_statistics_data(match_player_stats, match_score_summary)
     home_team, away_team = get_teams(match_id)
-    
 
     return match_stats[[home_team, away_team]].astype(float)
 
@@ -188,12 +188,32 @@ def format_table_numbers(match_stats):
 
 
 def define_column_format(home_team, away_team):
+    home_primary_colour, home_secondary_colour = get_team_colours(home_team)
+    away_primary_colour, away_secondary_colour = get_team_colours(away_team)
+
     col_defs = [
         ColumnDefinition(
-            name="index", title="", textprops={"ha": "left", "weight": "bold"}
+            name="index",
+            title="",
+            textprops={"ha": "left", "weight": "bold"},
+            border="right",
         ),
-        ColumnDefinition(name=home_team, textprops={"ha": "center"}),
-        ColumnDefinition(name=away_team, textprops={"ha": "center"}),
+        ColumnDefinition(
+            name=home_team,
+            textprops={
+                "ha": "center",
+                "color": home_secondary_colour,
+                "size": 14,
+            },
+        ),
+        ColumnDefinition(
+            name=away_team,
+            textprops={
+                "ha": "center",
+                "color": away_secondary_colour,
+                "size": 14,
+            },
+        ),
     ]
 
     return col_defs
@@ -205,7 +225,7 @@ def plottable_match_statistics(ax, plottable_match_stats, col_defs):
         ax=ax,
         column_definitions=col_defs,
         row_dividers=True,
-        textprops={"fontsize": 12, "ha": "center", "fontname": "Karla"},
+        textprops={"ha": "center", "fontname": "Karla"},
         footer_divider=True,
     )
 
@@ -217,7 +237,14 @@ def plot_match_statistics_table(ax, summary, player_stats, match_id):
     plottable_match_stats = rename_statistics(format_table_numbers(match_stats))
 
     home_team, away_team = get_teams(match_id)
+    home_primary_colour, home_secondary_colour = get_team_colours(home_team)
+    away_primary_colour, away_secondary_colour = get_team_colours(away_team)
     col_defs = define_column_format(home_team, away_team)
 
-    _, ax = plottable_match_statistics(ax, plottable_match_stats, col_defs)
-    return ax
+    table, ax = plottable_match_statistics(ax, plottable_match_stats, col_defs)
+    table.columns[home_team].set_facecolor(home_primary_colour)
+    table.col_label_row.cells[1].rectangle_patch.set_facecolor(home_primary_colour)
+    table.columns[away_team].set_facecolor(away_primary_colour)
+    table.col_label_row.cells[2].rectangle_patch.set_facecolor(away_primary_colour)
+
+    return table, ax
