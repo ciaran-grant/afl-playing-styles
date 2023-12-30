@@ -1,25 +1,25 @@
-from abc import ABC, abstractclassmethod
+import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 
-class Report(ABC):
-    def __init__(self,
-                 rows: int,
-                 cols: int,
-                 height: int = 12,
-                 width: int = 18,
-                 hspace: float = 0.2,
-                 wspace: float = 0.2
-                 ):
-        self.rows = rows
-        self.cols = cols
-        self.height = height
+class Report:
+    def __init__(self, spec_settings, width=18, height=30, hspace=0.1, wspace=0.1):
+        self.spec_settings = spec_settings
+        self.axes_dict = {}
         self.width = width
+        self.height = height
         self.hspace = hspace
         self.wspace = wspace
-    
-    @abstractclassmethod
-    def create_subplots(self):
-        pass
-    
-    @abstractclassmethod
-    def create_gridspec(self):
-        pass
+        self.fig = plt.figure(figsize=(width, height), constrained_layout=True)
+        self.create_grid()
+
+    def create_grid(self):
+        gs = GridSpec(self.spec_settings['rows'], self.spec_settings['columns'], figure=self.fig)
+
+        for subplot_name, axes_settings in self.spec_settings['axes'].items():
+            row, col = axes_settings.get('position', (0, 0))
+            rowspan, colspan = axes_settings.get('span', (1, 1))
+            
+            self.axes_dict[subplot_name] = self.fig.add_subplot(gs[row:row+rowspan, col:col+colspan])
+
+    def show(self):
+        plt.show()

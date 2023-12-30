@@ -117,7 +117,7 @@ def plot_match_expected_diamond_plot(fig, ax, player_stats, match_id, team, x, y
     ax, ax_rotate, transform = create_diamond_plot(fig, ax, extent_dict, nticks)
     ax_rotate = apply_diamond_plot_formatting(ax_rotate)
     
-    aux_ax = create_transformed_ax(ax_rotate, transform)
+    aux_ax = create_transformed_ax(ax_rotate, transform, extent_dict)
     
     aux_ax = plot_scatter(aux_ax, plot_data=team_expected_player_stats, x = x, y = y, team = team)
     
