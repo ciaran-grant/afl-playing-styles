@@ -37,19 +37,19 @@ def create_colourmap(team_colours, home_team, away_team):
     
     return custom_cmap
 
-def plot_heatmap(pitch, ax, relative_value_statistic, match_chains, custom_cmap, bins = (4, 5), fontsize=10):
+def plot_heatmap(pitch, ax, relative_value_statistic, match_chains, custom_cmap, bins = (4, 5), fontsize=10, fontcolour = "black"):
     
     plotting = pitch.bin_statistic(match_chains['left_right_start_x'], match_chains['left_right_start_y'], bins = bins)
     plotting['statistic'] = relative_value_statistic
 
     pitch.heatmap(plotting, ax=ax, cmap = custom_cmap, edgecolors="white", vmin = -50, vmax = 50)
     pitch.label_heatmap(plotting, ax=ax, str_format='{:.0f}',
-                            color='white', fontsize=fontsize, va='center', ha='center',
+                            color=fontcolour, fontsize=fontsize, va='center', ha='center',
                             )
     
     return pitch, ax
 
-def plot_expected_vaep_heatmap(ax, chain_data, match_id, bins = (4, 5), fontsize = 10):
+def plot_expected_vaep_heatmap(ax, chain_data, match_id, bins = (4, 5), fontsize = 10, fontcolour = "black"):
     
     home_chains, away_chains = get_home_away_chains(chain_data, match_id)
     pitch, ax = plot_vertical_pitch_ax(ax, line_zorder=2, line_width=1, line_alpha=0.8)
@@ -57,6 +57,6 @@ def plot_expected_vaep_heatmap(ax, chain_data, match_id, bins = (4, 5), fontsize
     home_team, away_team = get_teams(match_id)
     custom_cmap = create_colourmap(team_colours, home_team, away_team)
     
-    pitch, ax = plot_heatmap(pitch, ax, relative_value_statistic, home_chains, custom_cmap, bins = bins, fontsize=fontsize)
+    pitch, ax = plot_heatmap(pitch, ax, relative_value_statistic, home_chains, custom_cmap, bins = bins, fontsize=fontsize, fontcolour = fontcolour)
     
     return ax
