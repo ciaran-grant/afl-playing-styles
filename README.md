@@ -1,6 +1,10 @@
 # afl-playing-styles
 Exploration to understand both player and team playing styles in AFL.
 
+## Match Reports
+
+![match_report](figures/2022F4_Geelong_Sydney_MatchReport.png)
+
 ## Chain Data to Playing Styles
 
 ### What are we trying to achieve?
@@ -25,6 +29,11 @@ Exploration to understand both player and team playing styles in AFL.
     - Value of actions in chain (expected vaep)
     - Trajectory of chain
 
+- What do the chains for each team look like?
+    - Cluster all the chains into 50 clusters
+
+<img src="figures/clustering_possessions.png" width="500" />
+
 #### Quantify how a team goes about stopping the opponent from scoring points/goals (Out of Possession Style)
 - Where does the team concede shots from?
 - Where do the chains start for the chains that end in shots?
@@ -39,6 +48,8 @@ Exploration to understand both player and team playing styles in AFL.
     - Trajectory of chain
 
 ### What could be important for player styles?
+<img src="figures/petracca_player_vectors.png" width="500" />
+
 #### Where on the pitch does the player’s actions occur?
 - Cluster based on these to determine player ‘positions’
 #### What are the proportions of each action that the player takes?
@@ -48,8 +59,19 @@ Exploration to understand both player and team playing styles in AFL.
 #### What is the risk appetite/profile of their disposal actions?
 Risk % v Expected VAEP
 
+<img src="figures/value_disposal_diamond_scatter.png" width="500" />
+<img src="figures/team_disposal_risk.png" width="500" />
+<img src="figures/player_risk_value_disposals.png" width="500" />
+
 ### What tools are useful to do this?
 - NMF (Non-Negative Matrix Factorisation)
+
+<img src="figures/player_shot_NMF.png" width="500" />
+<img src="figures/kick_receiver_NMF.png" width="500" />
+
 - PCA (Principal Component Analysis)
 - K Means Clustering
 - Gaussian Mixture Models
+
+<img src="figures/clustering_inside50s.png" width="500" />
+
