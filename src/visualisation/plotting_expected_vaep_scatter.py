@@ -73,14 +73,13 @@ def create_transformed_ax(ax, transform, extent_dict):
     return aux_ax
 
 
-def plot_scatter(aux_ax, plot_data, x, y, team):
+def plot_scatter(aux_ax, plot_data, x, y, team, s=100):
     primary_colour, _ = get_team_colours(team)
-    aux_ax.scatter(plot_data[x], plot_data[y], c=primary_colour)
+    aux_ax.scatter(plot_data[x], plot_data[y], c=primary_colour, s=s, zorder=2)
 
     return aux_ax
 
-
-def plot_shirt_numbers(aux_ax, plot_data, x, y, team):
+def plot_shirt_numbers(aux_ax, plot_data, x, y, team, numbersize = 20):
     _, secondary_colour = get_team_colours(team)
 
     for player in list(plot_data["Player"].unique()):
@@ -91,7 +90,7 @@ def plot_shirt_numbers(aux_ax, plot_data, x, y, team):
             ha="center",
             va="center",
             c=secondary_colour,
-            size=4,
+            size=numbersize,
             zorder=3,
         )
 
@@ -107,7 +106,7 @@ def remove_ax_spines_ticks(ax):
     
     return ax
 
-def plot_match_expected_diamond_plot(fig, ax, player_stats, match_id, team, x, y, nticks = 10):
+def plot_match_expected_diamond_plot(fig, ax, player_stats, match_id, team, x, y, nticks = 10, markersize=100):
     
     team_expected_player_stats = get_team_expected_player_stats(player_stats, match_id, team, x, y)
     match_expected_player_stats = get_match_expected_player_stats(player_stats, match_id, x, y)
@@ -119,9 +118,9 @@ def plot_match_expected_diamond_plot(fig, ax, player_stats, match_id, team, x, y
     
     aux_ax = create_transformed_ax(ax_rotate, transform, extent_dict)
     
-    aux_ax = plot_scatter(aux_ax, plot_data=team_expected_player_stats, x = x, y = y, team = team)
+    aux_ax = plot_scatter(aux_ax, plot_data=team_expected_player_stats, x = x, y = y, team = team, s=markersize)
     
-    aux_ax = plot_shirt_numbers(aux_ax, plot_data=team_expected_player_stats, x = x, y = y, team = team)
+    aux_ax = plot_shirt_numbers(aux_ax, plot_data=team_expected_player_stats, x = x, y = y, team = team, numbersize=markersize/40)
     
     ax = remove_ax_spines_ticks(ax)
     
