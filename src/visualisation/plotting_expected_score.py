@@ -77,6 +77,6 @@ def plot_vertical_pitch_team_expected_score(ax, chain_data, match_id, team, font
     pitch, ax = plot_expected_score_map(pitch, ax, shot_data_dict, cmap = team_colourmaps[team], size_ratio = size_ratio, ec=ec)
     
     team_expected_score = calculate_total_team_expected_score(shot_data_dict)
-    ax = add_ax_text(ax, f'{team_expected_score:.1f}', team=team, fontsize=fontsize)
+    ax = add_ax_text(ax, f'{team_expected_score:.1f} xS', team=team, fontsize=fontsize)
     
     return ax
