@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib
 from visualisation.afl_colours import team_colourmaps
 from chain_utils import get_match, get_team
 from visualisation.plotting_pitches import plot_half_vertical_pitch_ax
@@ -52,7 +53,10 @@ def get_shot_data_dict(chains, match_id, team):
     
     return shot_data_dict
 
-def plot_expected_score_map(pitch, ax, shot_data_dict, cmap, size_ratio = 3, ec = "black"):
+def plot_expected_score_map(pitch, ax, shot_data_dict, cmap, size_ratio = 3, ec = None):
+
+    if ec is None:
+        ec = matplotlib.rcParams['text.color']
 
     norm = plt.Normalize(vmin=0, vmax=6)
     

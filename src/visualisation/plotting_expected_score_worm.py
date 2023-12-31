@@ -34,7 +34,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
     fontsize = 16
     fontname = "Karla"
     ha, va = "center", "center"
-    color = "black"
 
     home_team, away_team = get_teams(match_id)
 
@@ -61,7 +60,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
         ha=ha,
         va=va,
         fontname=fontname,
-        color=color,
         fontsize=fontsize,
         ax=ax,
     )
@@ -72,7 +70,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
         ha=ha,
         va=va,
         fontname=fontname,
-        color=color,
         fontsize=fontsize,
         ax=ax,
     )
@@ -83,7 +80,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
         ha=ha,
         va=va,
         fontname=fontname,
-        color=color,
         fontsize=fontsize,
         ax=ax,
     )
@@ -94,7 +90,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
         ha=ha,
         va=va,
         fontname=fontname,
-        color=color,
         fontsize=fontsize,
         ax=ax,
     )
@@ -105,7 +100,6 @@ def create_expected_score_worm_ax(ax, data, match_id, quarter_end_times):
         ha=ha,
         va=va,
         fontname=fontname,
-        color=color,
         fontsize=fontsize,
         ax=ax,
     )
