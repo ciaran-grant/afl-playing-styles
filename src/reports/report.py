@@ -9,7 +9,7 @@ class Report:
         self.height = height
         self.hspace = hspace
         self.wspace = wspace
-        self.fig = plt.figure(figsize=(width, height), constrained_layout=True)
+        self.fig = plt.figure(figsize=(width, height))
         self.create_grid()
 
     def create_grid(self):
