@@ -17,8 +17,8 @@ team_colours = {
         'positive':'#1d5a8b',
         'negative':'#bbbfc0'},
     'Collingwood':{
-        'positive':'white',
-        'negative':'#494949'},
+        'positive':'#494949',
+        'negative':'white'},
     'Essendon':{
         'positive':'#CC2031',
         'negative':'#939598'},

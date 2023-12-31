@@ -13,7 +13,7 @@ class Report:
         self.create_grid()
 
     def create_grid(self):
-        gs = GridSpec(self.spec_settings['rows'], self.spec_settings['columns'], figure=self.fig)
+        gs = GridSpec(self.spec_settings['rows'], self.spec_settings['columns'], figure=self.fig, hspace=self.hspace, wspace = self.wspace)
 
         for subplot_name, axes_settings in self.spec_settings['axes'].items():
             row, col = axes_settings.get('position', (0, 0))
